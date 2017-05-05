@@ -7,7 +7,7 @@ $databasename = "watermate";
 
 define("ROOT_WWW", "localhost/");
 
-$site_url = "localhost/watermate_api/";
+$site_url = "localhost/watermate/";
 
 /*
 

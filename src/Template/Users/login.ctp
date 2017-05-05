@@ -1,8 +1,8 @@
  
 	<!-- BEGIN LOGIN FORM --> 
  <?= $this->Form->create() ?>
-		<div class="form-title">
-			<span class="form-title"><img src="img/watermate.png"  style="margin-left:80px; margin-top: 16px;"></span>
+		<div class="form-title" align="center">
+			<span class="form-title"><img src="img/watermate.png"></span>
  
 		</div>
 		<div class="alert alert-danger display-hide">
@@ -13,11 +13,11 @@
 		<div class="form-group">
 			<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
 			 <center>
-			<?php echo $this->Form->input('email',['label'=>false,'class'=>' ','type'=>'email','placeholder'=>'    Enter Your Email Address','autocomplete'=>'off','style'=>'background:#fff ! important;border: 1px solid #6ba3c8;width:350px;height:45px;color:#000;']);?></center>
+			<?php echo $this->Form->input('email',['label'=>false,'class'=>'form-control','type'=>'email','placeholder'=>'Enter Your Email Address','autocomplete'=>'off']);?></center>
 		</div>
 		<div class="form-group">
 			 <center>
-			 <?php echo $this->Form->input('password',['label'=>false,'type'=>'password','placeholder'=>'    Enter Your password','autocomplete'=>'off','style'=>'background:#fff ! important;border: 1px solid #6ba3c8;width:350px;height:45px;color:#000;']);?>
+			 <?php echo $this->Form->input('password',['label'=>false,'type'=>'password','placeholder'=>'Enter Your password','autocomplete'=>'off','class'=>'form-control']);?>
 			 </center>
 		</div>
 		<div class="form-actions">

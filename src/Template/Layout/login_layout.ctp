@@ -31,9 +31,9 @@
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
-<body class="login"  style="background-color: #d2d6de !important;>
+<body class="login"  style="background-color: #d2d6de !important;">
 <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
-<div class="menu-toggler sidebar-toggler" >
+<div class="menu-toggler sidebar-toggler">
 </div>
 <!-- END SIDEBAR TOGGLER BUTTON -->
 <!-- BEGIN LOGO -->
