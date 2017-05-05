@@ -16,7 +16,7 @@
 <?php echo $this->Html->css('/assets/global/plugins/simple-line-icons/simple-line-icons.min.css'); ?>  
 <?php echo $this->Html->css('/assets/global/plugins/bootstrap/css/bootstrap.min.css'); ?> 
 <?php echo $this->Html->css('/assets/global/plugins/uniform/css/uniform.default.css'); ?> 
-<?php echo $this->Html->css('/assets/admin/pages/css/login2.css'); ?> 
+<?php echo $this->Html->css('/assets/admin/pages/css/login.css'); ?> 
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN PAGE LEVEL STYLES -->
 <?php echo $this->Html->css('/assets/global/css/components.css'); ?> 

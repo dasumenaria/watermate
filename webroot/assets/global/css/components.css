@@ -5682,11 +5682,11 @@ Blue Default
   border-left: 3px solid #4B8DF8;
 }
 
-/* Portlet */
+/* Portlet 
 .portlet > .portlet-body.blue,
 .portlet.blue {
   background-color: #4B8DF8;
-}
+}*/
 
 .portlet.solid.blue > .portlet-title,
 .portlet.solid.blue > .portlet-body {
