@@ -349,7 +349,8 @@ class API extends REST {
 		if(!empty($user_id) && !empty($password))
 		{
 			$md5pass=md5($password);
-			$ingcount = $this->db->prepare("SELECT * FROM `users` where email_id='".$user_id."' AND password='".$password."'");
+			echo "SELECT * FROM `users` where email='".$user_id."' AND password='".$password."'"; exit;
+			$ingcount = $this->db->prepare("SELECT * FROM `users` where email='".$user_id."' AND password='".$password."'");
 			$ingcount->execute();
  			if($ingcount->rowCount() > 0)
 			{
@@ -437,7 +438,7 @@ class API extends REST {
 				$this->response('', 406);
 			}
 			if(isset($this->_request['mobile_no']))
-			{
+			{	
 				@$email = $this->_request['mobile_no'];
  				$sql1 = $this->db->prepare("SELECT * FROM users WHERE mobile_no=:mobile_no");
 				$sql1->bindParam(":mobile_no", $email, PDO::PARAM_STR);
@@ -462,14 +463,54 @@ class API extends REST {
 					$sql_update1->bindParam(":random", $random, PDO::PARAM_INT);
  					$sql_update1->execute();
 					$result=array('otp'=>$random);
-					$error = array('status' => true, "success" => "Instructions for accessing your account have been sent to ".$email."", 'Response' => $result);
-					$this->response($this->json($error), 400);
+					$error = array('status' => true, "Error" => "Instructions for accessing your account have been sent to ".$email."", 'Response' => $result);
+					$this->response($this->json($error), 200);
 				
 				}
 				else
 				{
 					$error = array('status' => false, "Error" => "Sorry, the  mobile no you provide is not registered.", 'Response' => '');
-					$this->response($this->json($error), 400);
+					$this->response($this->json($error), 200);
+				}
+			}
+ 		}
+		
+		public function ChangePassword() 
+		{
+			global $link;
+			include_once("common/global.inc.php");
+			if ($this->get_request_method() != "POST") {
+				$this->response('', 406);
+			}
+			if(!empty($this->_request['mobile_no']) && !empty($this->_request['otp']) && !empty($this->_request['password']))
+			{	
+				@$mobile_no = $this->_request['mobile_no'];
+				@$otp = $this->_request['otp'];
+				@$password = $this->_request['password'];
+ 				$sql1 = $this->db->prepare("SELECT * FROM users WHERE mobile_no=:mobile_no AND otp=:otp ");
+				$sql1->bindParam(":mobile_no", $mobile_no, PDO::PARAM_STR);
+				$sql1->bindParam(":otp", $otp, PDO::PARAM_STR);
+				$sql1->execute();
+				if ($sql1->rowCount()>0) 
+				{ 
+					$row_gp1 = $sql1->fetch(PDO::FETCH_ASSOC);
+					$update_id=$row_gp1['id'];
+ 					$pass_MD5=md5($password);
+								
+					$sql_update1 = $this->db->prepare("update `users` set password=:pass_MD5 where id=:id AND otp=:random");
+					$sql_update1->bindParam(":id", $update_id, PDO::PARAM_INT);
+					$sql_update1->bindParam(":pass_MD5", $pass_MD5, PDO::PARAM_INT);
+					$sql_update1->bindParam(":random", $random, PDO::PARAM_INT);
+ 					$sql_update1->execute();
+					$result=array('otp'=>$random);
+					$error = array('status' => true, "Error" => "Password Successfully changed", 'Response' => $result);
+					$this->response($this->json($error), 200);
+				
+				}
+				else
+				{
+					$error = array('status' => false, "Error" => "Sorry, the OTP you provide is not metch.", 'Response' => '');
+					$this->response($this->json($error), 200);
 				}
 			}
  		}

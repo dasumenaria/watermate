@@ -43,19 +43,24 @@ use Cake\Routing\Route\DashedRoute;
  */
 Router::defaultRouteClass(DashedRoute::class);
 
+/*Router::scope('/api', function ($routes) {
+    $routes->extensions(['json']);
+});*/
+
 Router::scope('/', function (RouteBuilder $routes) {
-    /**
+	$routes->extensions(['json','xml']);
+	//$routes->resources('Users');
+     /**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
     $routes->connect('/', ['controller' => 'Users', 'action' => 'login' ]);
-
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
     $routes->connect('/Users/*', ['controller' => 'Users', 'action' => 'login']);
-
+ 
     /**
      * Connect catchall routes for all controllers.
      *

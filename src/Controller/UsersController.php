@@ -15,36 +15,35 @@ class UsersController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
-	 public function login()
-{
- $this->viewBuilder()->layout('login_layout');
-    if ($this->request->is('post')) {
-        $user = $this->Auth->identify();
-        if ($user)  {
-				$this->Auth->setUser($user);
-				if($this->Auth->User('role')==1)
-				{
-					return $this->redirect(['controller'=>'Records','action' => 'index']);
+	public function login()
+	{
+	 $this->viewBuilder()->layout('login_layout');
+		if ($this->request->is('post')) {
+			$user = $this->Auth->identify();
+			if ($user)  {
+					$this->Auth->setUser($user);
+					if($this->Auth->User('role')==1)
+					{
+						return $this->redirect(['controller'=>'Records','action' => 'index']);
+					}
+					else
+					{
+					return $this->redirect(['controller'=>'Master','action' => 'index']);
+					}
 				}
-				else
-				{
-				return $this->redirect(['controller'=>'Master','action' => 'index']);
-				}
-			}
-			
-        $this->Flash->error('Your username or password is incorrect.');
-    }
-} 
-public function logout()
-{
-$this->viewBuilder()->layout('login_layout'); 
-    $this->Flash->success('You are now logged out.');
-    return $this->redirect($this->Auth->logout());
-}
- public function index()
+				
+			$this->Flash->error('Your username or password is incorrect.');
+		}
+	} 
+	public function logout()
+	{
+	$this->viewBuilder()->layout('login_layout'); 
+		$this->Flash->success('You are now logged out.');
+		return $this->redirect($this->Auth->logout());
+	}
+ 	public function index()
 	{
 		$this->viewBuilder()->layout('index_layout');
-
 		$users = $this->paginate($this->Users);
         $this->set(compact('users'));
         $this->set('_serialize', ['users']);

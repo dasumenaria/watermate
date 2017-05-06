@@ -1,6 +1,6 @@
 <?php
 namespace App\Model\Table;
-
+use Cake\Auth\DefaultPasswordHasher; //include this line
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -40,7 +40,7 @@ class UsersTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->hasMany('Bookmarks', [
+        $this->hasMany('BillDatas', [
             'foreignKey' => 'user_id'
         ]);
     }
